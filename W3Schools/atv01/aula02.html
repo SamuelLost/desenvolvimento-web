@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript Functions</h2>
+
+<p>This example calls a function which performs a calculation, and returns the result:</p>
+
+<p id="demo"></p>
+<p id="demo2"></p>
+<script>
+function myFunction1(p1, p2) {
+  return p1 * p2;
+}
+
+function myFunction(objeto) {
+  const {p1,p2} = objeto
+  return p1 - p2;
+}
+
+let x = function() {return "hello"}
+
+const y = () => {return "hello2"}
+
+let z = () => "hello3"
+//Arrow Function
+const t = (msg) => msg //retornando o paramentro
+
+const v = msg => msg //para qnd tiver só um paramentro
+//const v = msg => {return msg} //para qnd tiver só um paramentro
+
+const person = {
+  firstName: "John",
+  lastName : "Doe",
+  id       : 5566,
+  fullName : function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+// document.getElementById("demo").innerHTML = myFunction1(4, 3);
+// document.getElementById("demo2").innerHTML = myFunction({p2:1, p1:3});
+// document.getElementById("demo2").innerHTML = z();
+document.getElementById("demo2").innerHTML = person.fullName();
+</script>
+
+</body>
+</html>

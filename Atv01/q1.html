@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Questão 1</title></head>
+<body>
+    
+    <p id="imc">O IMC é: </p>
+    <script>
+        function imc(peso, altura) {
+            let imc = peso / (altura**2);
+            return imc.toFixed(2);
+        }
+        document.getElementById("imc").innerHTML += imc(64, 1.73);
+    </script>
+</body>
+
+</html>

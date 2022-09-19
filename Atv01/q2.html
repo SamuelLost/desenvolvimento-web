@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 2</title>
+</head>
+<body>
+     
+    <p id="media">A média é: </p>
+    <p id="situacao"></p>
+    <script>
+        let media;
+        function situacaoAluno(np1, np2) {
+            media = (np1 + np2)/2;
+            document.getElementById("media").innerHTML += media;
+            if (media >= 7) {
+                return "Aprovado com Conceito A"
+            } else if(media < 4) {
+                return "Reprovado Direto"
+            } else {
+                let notafinal = 4;
+
+                let mediaFinal = (notafinal + media) / 2;
+
+                if(mediaFinal >= 5) 
+                    return "Aprovado por Conceito B"
+                else {
+                    return "Reprovado na Final"
+                }
+            }
+        }
+        document.getElementById("situacao").innerHTML = situacaoAluno(3,10);
+    </script>
+</body>
+</html>

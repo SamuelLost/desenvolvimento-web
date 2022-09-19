@@ -1,0 +1,87 @@
+QUESTÃO 1 ----------------------------------
+<!DOCTYPE html>
+<html>
+<head><title>Questão 1</title></head>
+<body>
+    
+    <p id="imc">O IMC é: </p>
+    <script>
+        function imc(peso, altura) {
+            let imc = peso / (altura**2);
+            return imc.toFixed(2);
+        }
+        document.getElementById("imc").innerHTML += imc(64, 1.73);
+    </script>
+</body>
+
+</html>
+
+QUESTÃO 2 ----------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 2</title>
+</head>
+<body>
+     
+    <p id="media">A média é: </p>
+    <p id="situacao"></p>
+    <script>
+        let media;
+        function situacaoAluno(np1, np2) {
+            media = (np1 + np2)/2;
+            document.getElementById("media").innerHTML += media;
+            if (media >= 7) {
+                return "Aprovado com Conceito A"
+            } else if(media < 4) {
+                return "Reprovado Direto"
+            } else {
+                let notafinal = 4;
+
+                let mediaFinal = (notafinal + media) / 2;
+
+                if(mediaFinal >= 5) 
+                    return "Aprovado por Conceito B"
+                else {
+                    return "Reprovado na Final"
+                }
+            }
+        }
+        document.getElementById("situacao").innerHTML = situacaoAluno(3,10);
+    </script>
+</body>
+</html>
+
+QUESTÃO 3 ----------------------------------
+<!DOCTYPE html>
+<html>
+    <head><title>Questão 3</title></head>
+<body>
+    <h2>JavaScript Arrays</h2>
+    <p id="demo"></p>
+    <script>
+        const alunos = [
+            { nome: "Leandro", ira: 7.5 },
+            { nome: "Maria", ira: 8.2 },
+            { nome: "José", ira: 4.5 },
+            { nome: "Diana", ira: 5.4 },
+            { nome: "Bruna", ira: 6.7 }
+        ];
+        function reprovados(alunos) {
+            let res = "<ul>"
+            for (let i = 0; i < alunos.length; i++) {
+                if(alunos[i].ira < 7) {
+                    res += `<li> Nome: ${alunos[i].nome}, IRA: ${alunos[i].ira}  </li>`;
+                }
+            }
+            res += "</ul>";
+            return res
+        }
+        document.getElementById("demo").innerHTML = reprovados(alunos);
+    </script>
+</body>
+
+</html>

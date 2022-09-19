@@ -29,11 +29,11 @@ export const VotaCidades = () => {
                 <h2>Limoeiro do Norte: {lim}</h2>
                 <h2>Crateús: {crateus}</h2>
             </div>
-            <button onClick={() => setQxd(ant => ant +1)}>Votar Quixadá</button> <br />
-            <button onClick={() => setLim(ant => ant +1)}>Votar Limoeiro do Norte</button> <br />
-            <button onClick={() => setCrateus(ant => ant +1)}>Votar Crateús</button> <br />
-            <button onClick={() => reset()}>Resetar</button> <br />
-            <button onClick={() => fim()}>Fim da votação</button> <br />
+            <button onClick={() => setQxd(ant => ant +1)}>Votar Quixadá</button> 
+            <button onClick={() => setLim(ant => ant +1)}>Votar Limoeiro do Norte</button> 
+            <button onClick={() => setCrateus(ant => ant +1)}>Votar Crateús</button> 
+            <button onClick={() => reset()}>Resetar</button>
+            <button onClick={() => fim()}>Fim da votação</button>
         </div>
     )
 }

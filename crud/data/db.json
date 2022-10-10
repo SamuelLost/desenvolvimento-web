@@ -1,0 +1,34 @@
+{
+  "estudantes": [
+    {
+      "id": 1,
+      "name": "Samuel Henrique",
+      "course": "EC",
+      "ira": 9.1
+    },
+    {
+      "id": 2,
+      "name": "Pedro Botelho",
+      "course": "EC",
+      "ira": 9
+    },
+    {
+      "id": 3,
+      "name": "Anderson Silva",
+      "course": "EC",
+      "ira": 8.66
+    },
+    {
+      "name": "Erick Silva",
+      "course": "EC",
+      "ira": "8.62",
+      "id": 4
+    },
+    {
+      "name": "Jr",
+      "course": "EC",
+      "ira": "7.8",
+      "id": 5
+    }
+  ]
+}

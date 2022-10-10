@@ -1,25 +1,37 @@
 import { useState } from "react"
+import axios from "axios"
+import { useNavigate } from 'react-router-dom'
 export const CreateStudent = () => {
 
     const [name, setName] = useState('')
     const [course, setCourse] = useState('')
-    const [ira, setIra] = useState(0.0)
+    const [ira, setIra] = useState('')
+    const navigate = useNavigate()
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        console.log(name)
-        console.log(course)
-        console.log(ira)
-
+        const baseURI = "http://localhost:3001/estudantes"
+        // console.log(name)
+        // console.log(course)
+        // console.log(ira)
+        const newStudent = { name, course, ira }
+        axios.post(baseURI, newStudent)
+        .then(
+            (response) => {
+                console.log(response.data.id)
+                navigate("/listStudent")
+            }
+        )
+        .catch((error) => {console.log(error)})
         setCourse('')
         setName('')
-        setIra(0.0)
+        setIra('')
     }
 
     return (
-        <div style={{marginTop:15}}>
+        <div style={{ marginTop: 15 }}>
             <h2>Criar Estudante</h2>
-            
+
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="">Nome: </label>
@@ -63,7 +75,7 @@ export const CreateStudent = () => {
                         }
                     />
                 </div>
-                <div className="form-group" style={{marginTop:15}}>
+                <div className="form-group" style={{ marginTop: 15 }}>
                     <input type="submit" value={"Criar Estudante"}
                         className="btn btn-primary"
                     />

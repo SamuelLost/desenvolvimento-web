@@ -1,7 +1,6 @@
-# Getting Started with Create React App
+# Como alternar entre as questões
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+Dentro do arquivo [App.js](src/App.js) existe várias funções que renderizam as questões. Dentro da função App() existe uma variável com o nome **questao**, para alternar qual das questões irá renderizar no navegador, basta alterar o valor da variável para o valor que desejar dentro do *range* de questões (1-5).
 ## Available Scripts
 
 In the project directory, you can run:

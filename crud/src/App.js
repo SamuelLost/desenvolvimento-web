@@ -9,6 +9,7 @@ import { ListTeacher } from './components/teacher/ListTeacher';
 import { CreateTeacher } from './components/teacher/CreateTeacher';
 import { EditTeacher } from './components/teacher/EditTeacher';
 import { Home } from './components/Home';
+//localhost:3001/students
 
 // import './App.css';
 
@@ -101,7 +102,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='createStudent' element={<CreateStudent />} />
-                    <Route path='editStudent' element={<EditStudent />} />
+                    <Route path='editStudent/:id' element={<EditStudent />} />
                     <Route path='listStudent' element={<ListStudent />} />
                     <Route path='createTeacher' element={<CreateTeacher />} />
                     <Route path='editTeacher' element={<EditTeacher />} />

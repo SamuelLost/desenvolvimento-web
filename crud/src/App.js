@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import { Routes, Route, Link } from 'react-router-dom'
 import { EditStudent } from './components/students/EditStudent';
 import { CreateStudent } from './components/students/CreateStudent';
-import { ListStudent } from './components/students/ListStudent';
+import { ListStudentPage } from './components/students/ListStudent';
 import { ListTeacher } from './components/teacher/ListTeacher';
 import { CreateTeacher } from './components/teacher/CreateTeacher';
 import { EditTeacher } from './components/teacher/EditTeacher';
@@ -103,7 +103,7 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='createStudent' element={<CreateStudent />} />
                     <Route path='editStudent/:id' element={<EditStudent />} />
-                    <Route path='listStudent' element={<ListStudent />} />
+                    <Route path='listStudent' element={<ListStudentPage />} />
                     <Route path='createTeacher' element={<CreateTeacher />} />
                     <Route path='editTeacher' element={<EditTeacher />} />
                     <Route path='listTeacher' element={<ListTeacher />} />

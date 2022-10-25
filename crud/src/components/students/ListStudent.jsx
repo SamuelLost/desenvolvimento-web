@@ -2,27 +2,45 @@ import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 // import { students } from "./data"
 import axios from "axios"
+import { FirebaseContext } from "../../utils/FirebaseContext"
+import { StudentService } from "../../services/StudentService"
 
-export const ListStudent = () => {
+export const ListStudentPage = () => {
+    return (
+        <FirebaseContext.Consumer>
+            {value => <ListStudent firebase={value} />}
+        </FirebaseContext.Consumer>
+    )
+}
+
+const ListStudent = ({ firebase }) => {
 
     const [estudantes, setEstudantes] = useState([])
 
     useEffect(
         () => {
-            axios.get("http://localhost:3001/estudantes")
-                .then(
-                    (response) => {
-                        // console.log(response.data)
-                        setEstudantes(response.data)
-                    }
-                )
-                .catch(
-                    (error) => {
-                        console.log(error)
-                    }
-                )
+            // axios.get("http://localhost:3001/estudantes")
+            //     .then(
+            //         (response) => {
+            //             // console.log(response.data)
+            //             setEstudantes(response.data)
+            //         }
+            //     )
+            //     .catch(
+            //         (error) => {
+            //             console.log(error)
+            //         }
+            //     )
+            StudentService.list(
+                firebase.getFirestoreDB(),
+                (students) => {
+                    setEstudantes(students)
+                    console.log(students)
+                }
+            )
+            // setEstudantes(students);
         },
-        []
+        [firebase]
     )
     function deleteStudent(id) {
         if (window.confirm('Deseja excluir?')) {
@@ -74,7 +92,7 @@ export const ListStudent = () => {
     return (
         <div>
             <h1>Listar Estudante</h1>
-            <table className="table table-striped">
+            <table className="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>ID</th>

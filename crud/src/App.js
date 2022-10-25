@@ -56,12 +56,12 @@ function App() {
                                 <li>
                                     <hr className='dropdown-divider' />
                                 </li>
-                                <li>
+                                {/* <li>
                                     <Link to={"/editStudent"} className='dropdown-item'>Editar Estudante</Link>
                                 </li>
                                 <li>
                                     <hr className='dropdown-divider' />
-                                </li>
+                                </li> */}
                                 <li>
                                     <Link to={"/listStudent"} className='dropdown-item'>Listar Estudante</Link>
                                 </li>

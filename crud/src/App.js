@@ -2,8 +2,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import { Routes, Route, Link } from 'react-router-dom'
-import { EditStudent } from './components/students/EditStudent';
-import { CreateStudent } from './components/students/CreateStudent';
+import { EditStudentPage } from './components/students/EditStudent';
+import { CreateStudentPage } from './components/students/CreateStudent';
 import { ListStudentPage } from './components/students/ListStudent';
 import { ListTeacher } from './components/teacher/ListTeacher';
 import { CreateTeacher } from './components/teacher/CreateTeacher';
@@ -101,12 +101,13 @@ function App() {
             <div className='container'>
                 <Routes>
                     <Route path='/' element={<Home />} />
-                    <Route path='createStudent' element={<CreateStudent />} />
-                    <Route path='editStudent/:id' element={<EditStudent />} />
+                    <Route path='createStudent' element={<CreateStudentPage />} />
+                    <Route path='editStudent/:id' element={<EditStudentPage />} />
                     <Route path='listStudent' element={<ListStudentPage />} />
                     <Route path='createTeacher' element={<CreateTeacher />} />
                     <Route path='editTeacher' element={<EditTeacher />} />
                     <Route path='listTeacher' element={<ListTeacher />} />
+                    <Route path='error' element={<h1>Erro 404</h1>} />
                 </Routes>
             </div>
         </div>

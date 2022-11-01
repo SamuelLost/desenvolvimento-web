@@ -2,7 +2,19 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import { useParams, useNavigate } from "react-router-dom"
 
-export const EditStudent = () => {
+import { FirebaseContext } from "../../utils/FirebaseContext"
+import { StudentService } from "../../services/StudentService"
+
+
+export const EditStudentPage = () => {
+    return (
+        <FirebaseContext.Consumer>
+            {value => <EditStudent firebase={value} />}
+        </FirebaseContext.Consumer>
+    )
+}
+
+const EditStudent = ({ firebase }) => {
 
     const [name, setName] = useState('')
     const [course, setCourse] = useState('')
@@ -11,34 +23,57 @@ export const EditStudent = () => {
     const params = useParams()
 
     useEffect(
-        
+
         () => {
-            axios.get(`http://localhost:3001/estudantes/${params.id}`)
-            .then(
-                (response) => {
-                    setName(response.data.name)
-                    setCourse(response.data.course)
-                    setIra(response.data.ira)
-                }
+            //     axios.get(`http://localhost:3001/estudantes/${params.id}`)
+            //     .then(
+            //         (response) => {
+            //             setName(response.data.name)
+            //             setCourse(response.data.course)
+            //             setIra(response.data.ira)
+            //         }
+            //     )
+            //     .catch(
+            //         (error) => {
+            //             console.log(error)
+            //         }
+            //     )
+            // }, [params.id]
+            StudentService.retrieve(
+                firebase.getFirestoreDB(),
+                (student) => {
+                    setName(student.name)
+                    setCourse(student.course)
+                    setIra(student.ira)
+                },
+                params.id
             )
-            .catch(
-                (error) => {
-                    console.log(error)
-                }
-            )
-        }, [params.id]
+        }, [params.id, firebase]
     )
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const baseURI = `http://localhost:3001/estudantes/${params.id}`
-        //axios put
-        const studentUpdated = {name, course, ira}
-        axios.put(baseURI, studentUpdated)
-        .then(
-            (response) => {
-                navigate('/listStudent')
-            }
+        // const baseURI = `http://localhost:3001/estudantes/${params.id}`
+        // //axios put
+        const studentUpdated = { name, course, ira }
+        // axios.put(baseURI, studentUpdated)
+        //     .then(
+        //         (response) => {
+        //             navigate('/listStudent')
+        //         }
+        //     )
+        StudentService.update(
+            firebase.getFirestoreDB(),
+            (result) => {
+                // result ? navigate('/listStudent') : alert('Erro ao atualizar')
+                result ? navigate('/listStudent') : navigate('/error')
+                // if (result)
+                //     navigate('/listStudent')
+                // else
+                //     navigate('/error')
+            },
+            params.id,
+            studentUpdated
         )
     }
 

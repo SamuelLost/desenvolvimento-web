@@ -16,6 +16,7 @@ export const ListStudentPage = () => {
 const ListStudent = ({ firebase }) => {
 
     const [estudantes, setEstudantes] = useState([])
+    const [reload, setReload] = useState(false)
 
     useEffect(
         () => {
@@ -31,7 +32,7 @@ const ListStudent = ({ firebase }) => {
             //             console.log(error)
             //         }
             //     )
-            StudentService.list(
+            StudentService.list_on_snapshot(
                 firebase.getFirestoreDB(),
                 (students) => {
                     setEstudantes(students)
@@ -42,9 +43,32 @@ const ListStudent = ({ firebase }) => {
         },
         [firebase]
     )
+
+    //Não cria um novo array, apenas atualiza o array existente
+    function deleteStudentV2(id) { 
+        if(window.confirm("Deseja realmente excluir o estudante?")) {
+            StudentService.delete(
+                firebase.getFirestoreDB(),
+                () => {
+                    let studentsTemp = estudantes
+                    for(let i = 0; i < studentsTemp.length; i++) {
+                        if(studentsTemp[i].id === id) {
+                            studentsTemp.splice(i, 1)
+                            break
+                        }
+                    }
+                    setEstudantes(studentsTemp)
+                    setReload(!reload)
+                },
+                id
+            )
+        }
+    }
+
+    //Cria um novo array
     function deleteStudent(id) {
         if (window.confirm('Deseja excluir?')) {
-            axios.delete(`http://localhost:3001/estudantes/${id}`)
+            /* axios.delete(`http://localhost:3001/estudantes/${id}`)
                 .then(
                     () => {
                         console.log("OK")
@@ -57,7 +81,15 @@ const ListStudent = ({ firebase }) => {
                     (error) => {
                         console.log(error)
                     }
-                )
+                ) */
+            StudentService.delete(
+                firebase.getFirestoreDB(),
+                () => {
+                    const newStudents = estudantes.filter((estudante) => estudante.id !== id)
+                    setEstudantes(newStudents)
+                },
+                id
+            )
 
         }
     }
@@ -78,7 +110,7 @@ const ListStudent = ({ firebase }) => {
                             </Link>
 
                             <button className="btn btn-danger ms-3" onClick={
-                                () => deleteStudent(element.id)
+                                () => deleteStudentV2(element.id)
                             }>
                                 Excluir
                             </button>

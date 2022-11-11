@@ -5,9 +5,9 @@ import { Routes, Route, Link } from 'react-router-dom'
 import { EditStudentPage } from './components/students/EditStudent';
 import { CreateStudentPage } from './components/students/CreateStudent';
 import { ListStudentPage } from './components/students/ListStudent';
-import { ListTeacher } from './components/teacher/ListTeacher';
-import { CreateTeacher } from './components/teacher/CreateTeacher';
-import { EditTeacher } from './components/teacher/EditTeacher';
+import { ListTeacherPage } from './components/teacher/ListTeacher';
+import { CreateTeacherPage as CreateTeacher } from './components/teacher/CreateTeacher';
+import { EditTeacherPage as EditTeacher } from './components/teacher/EditTeacher';
 import { Home } from './components/Home';
 //localhost:3001/students
 
@@ -77,12 +77,12 @@ function App() {
 
                                     <Link to={"/createTeacher"} className='dropdown-item'>Criar Professor</Link>
                                 </li>
-                                <li>
+                                {/* <li>
                                     <hr className='dropdown-divider' />
                                 </li>
                                 <li>
                                     <Link to={"/editTeacher"} className='dropdown-item'>Editar Professor</Link>
-                                </li>
+                                </li> */}
                                 <li>
                                     <hr className='dropdown-divider' />
                                 </li>
@@ -105,8 +105,8 @@ function App() {
                     <Route path='editStudent/:id' element={<EditStudentPage />} />
                     <Route path='listStudent' element={<ListStudentPage />} />
                     <Route path='createTeacher' element={<CreateTeacher />} />
-                    <Route path='editTeacher' element={<EditTeacher />} />
-                    <Route path='listTeacher' element={<ListTeacher />} />
+                    <Route path='editTeacher/:id' element={<EditTeacher />} />
+                    <Route path='listTeacher' element={<ListTeacherPage />} />
                     <Route path='error' element={<h1>Erro 404</h1>} />
                 </Routes>
             </div>

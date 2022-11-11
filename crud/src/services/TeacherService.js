@@ -3,57 +3,59 @@ import {
     query, onSnapshot
 } from 'firebase/firestore';
 
-export class StudentService {
+export class TeacherService {
     static list = (firestoreDB, callback) => {
         //new array
 
-        getDocs(collection(firestoreDB, 'student'))
+        getDocs(collection(firestoreDB, 'teacher'))
             .then(
-                (studentSnapshot) => {
-                    const students = [];
-                    studentSnapshot.forEach(
-                        (studentDoc) => {
-                            // console.log(studentDoc.id, ' => ', studentDoc.data());
-                            const { name, course, ira } = studentDoc.data();
-                            students.push({ id: studentDoc.id, name, course, ira });
+                (teacherSnapshot) => {
+                    const teachers = [];
+                    teacherSnapshot.forEach(
+                        (teacherDoc) => {
+                            //console.log(teacherDoc.id, ' => ', teacherDoc.data());
+                            const { name, course, wage } = teacherDoc.data();
+                            teachers.push({ id: teacherDoc.id, name, course, wage });
+                            console.log(teachers);
                         }
                     )
-                    callback(students);
+                    callback(teachers);
                 }
             )
             .catch(error => console.log(error));
     }
 
     static list_on_snapshot = (firestoreDB, callback) => {
-        const q = query(collection(firestoreDB, 'student'))
+        const q = query(collection(firestoreDB, 'teacher'))
         const unsubscribe = onSnapshot(
             q,
             (querySnapshot) => {
-                const students = [];
+                const teachers = [];
                 querySnapshot.forEach(
-                    (studentDoc) => {
-                        // console.log(studentDoc.id, ' => ', studentDoc.data());
-                        const { name, course, ira } = studentDoc.data();
-                        students.push({ id: studentDoc.id, name, course, ira });
+                    (teacherDoc) => {
+                        // console.log(teacherDoc.id, ' => ', teacherDoc.data());
+                        const { name, course, wage } = teacherDoc.data();
+                        console.log(teachers);
+                        teachers.push({ id: teacherDoc.id, name, course, wage });
                     }
                 )
-                callback(students);
+                callback(teachers);
             }
         )
     }
 
-    static add = (firestoreDB, callback, student) => {
-        addDoc(collection(firestoreDB, 'student'), student)
+    static add = (firestoreDB, callback, teacher) => {
+        addDoc(collection(firestoreDB, 'teacher'), teacher)
             .then(
-                (studentDoc) => {
-                    callback(studentDoc.id);
+                (teacherDoc) => {
+                    callback(teacherDoc.id);
                 }
             )
             .catch(error => console.log(error));
     }
 
     static retrieve = (firestoreDB, callback, id) => {
-        getDoc(doc(firestoreDB, 'student', id))
+        getDoc(doc(firestoreDB, 'teacher', id))
             .then(
                 (docSnap) => {
                     if (docSnap.exists()) {
@@ -67,10 +69,10 @@ export class StudentService {
             .catch(error => console.log(error));
     }
 
-    static update = (firestoreDB, callback, id, student) => {
+    static update = (firestoreDB, callback, id, teacher) => {
         updateDoc(
-            doc(firestoreDB, 'student', id),
-            student
+            doc(firestoreDB, 'teacher', id),
+            teacher
         )
             .then(
                 () => {
@@ -83,7 +85,7 @@ export class StudentService {
     }
 
     static delete = (firestoreDB, callback, id) => {
-        deleteDoc(doc(firestoreDB, 'student', id))
+        deleteDoc(doc(firestoreDB, 'teacher', id))
             .then(
                 () => {
                     callback(true);

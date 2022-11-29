@@ -8,6 +8,8 @@ import { ListStudentPage } from './components/students/ListStudent';
 import { ListTeacherPage } from './components/teacher/ListTeacher';
 import { CreateTeacherPage as CreateTeacher } from './components/teacher/CreateTeacher';
 import { EditTeacherPage as EditTeacher } from './components/teacher/EditTeacher';
+import { SignInUserPage } from './components/users/SignInUser';
+import { SignUpUserPage } from './components/users/SignUpUser';
 import { Home } from './components/Home';
 //localhost:3001/students
 
@@ -18,7 +20,7 @@ function App() {
         <div>
             <nav className='navbar navbar-expand-lg navbar-light bg-light'>
                 <div className='container collapse navbar-collapse' id='navbarSupoortedContent'>
-                    <ul className='navbar-nav mr-auto'>
+                    <ul className='navbar-nav mr-auto d-flex align-items-center'>
                         <li className='nav-item'>
                             <Link to={"/"} className="navbar-brand" style={{ paddingLeft: 10 }}>CRUD</Link>
                         </li>
@@ -100,7 +102,7 @@ function App() {
             </nav>
             <div className='container'>
                 <Routes>
-                    <Route path='/' element={<Home />} />
+                    <Route path='/' element={<SignUpUserPage />} />
                     <Route path='createStudent' element={<CreateStudentPage />} />
                     <Route path='editStudent/:id' element={<EditStudentPage />} />
                     <Route path='listStudent' element={<ListStudentPage />} />

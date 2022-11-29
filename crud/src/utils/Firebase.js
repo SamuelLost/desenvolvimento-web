@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-// import { getAuth } from 'firebase/auth';
+import { getAuth } from 'firebase/auth';
+
 import { firebaseConfig } from '../keys/firebase_key';
 
 // const app = initializeApp(firebaseConfig);
@@ -14,5 +15,7 @@ export class Firebase {
         return getFirestore(this.app);
     }
 
-
+    getAuthentication() {
+        return getAuth(this.app);
+    }
 }
